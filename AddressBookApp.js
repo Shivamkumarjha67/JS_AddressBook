@@ -140,6 +140,18 @@ class AddressBook {
             console.error(error.message);
         }
     }
+
+    findAndDelete(firstName, lastName) {
+        let index = this.contacts.findIndex(c => c.firstName === firstName && c.lastName === lastName);
+
+        if(index == -1) {
+            console.log("Contact does not exists in the contact book!");
+            return;
+        }
+
+        this.contacts.splice(index, 1);
+        console.log("Contact deleted successfully...");
+    }
 }
 
 let addressBook = new AddressBook();
