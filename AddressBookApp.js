@@ -210,6 +210,14 @@ class AddressBook {
         console.log("Sorted Address Book:");
         console.log(this.contacts.map(contact => contact.toString()).join("\n"));    
     } 
+
+    // UC12 - Sort by city, state or zip
+    sortByProperty(property) {
+        this.contacts.sort((a, b) => a[property].localeCompare(b[property]));
+
+        console.log(`Sorted Address book by ${property} : \n`);
+        console.log(this.contacts.map(contact => contact.toString()).join("\n"));
+    }
 }
 
 let addressBook = new AddressBook();
@@ -225,3 +233,4 @@ addressBook.displayContact();
 addressBook.numberOfContacts();
 addressBook.findByAddress("state", "Bihar");
 addressBook.countContactByAddress("city", "Bhopal");
+addressBook.sortByProperty("state");
