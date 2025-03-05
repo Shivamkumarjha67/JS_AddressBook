@@ -58,12 +58,15 @@ class AddressBook {
         this.contacts = [];
     }
 
+    // UC7 - Ensuring no duplicate contact is being added
     addContact(contact) {
-        if(this.contacts.find(c => c.phoneNumber === contact.phoneNumber)) {
-            console.log("This contact already exists!")
+        let isDuplicate = this.contacts.filter(c => c.firstName === contact.firstName && c.lastName === contact.lastName).length > 0;
+
+        if(isDuplicate) {
+            console.log("Contact already exists in the address book.");
             return;
         }
-
+        
         this.contacts.push(contact);
         console.log("Contact added successfully...");
     }
