@@ -79,10 +79,75 @@ class AddressBook {
             console.log(`${index + 1} : ${contact.toString()}`);
         });
     }
+
+    // UC4 - Abitilty to find contact based on name and edit it as well
+    findContact(name) {
+        let contact = this.contacts.find(c => c.firstName.toLowerCase() === name.toLowerCase());
+        if (contact) {
+            console.log(`\nContact found: ${contact.toString()}`);
+            return contact;
+        } else {
+            console.log("Contact not found!");
+            return null;
+        }
+    }
+
+    editContact(name, field, newValue) {
+        let contact = this.findContact(name);
+        if (!contact) return;
+
+        try {
+            switch (field.toLowerCase()) {
+                case "firstname":
+                    if (!contact.validateName(newValue)) throw new Error("Invalid First Name!");
+                    contact.firstName = newValue;
+                    break;
+                case "lastname":
+                    if (!contact.validateName(newValue)) throw new Error("Invalid Last Name!");
+                    contact.lastName = newValue;
+                    break;
+                case "address":
+                    if (!contact.validateAddress(newValue)) throw new Error("Invalid Address!");
+                    contact.address = newValue;
+                    break;
+                case "city":
+                    if (!contact.validateAddress(newValue)) throw new Error("Invalid City!");
+                    contact.city = newValue;
+                    break;
+                case "state":
+                    if (!contact.validateAddress(newValue)) throw new Error("Invalid State!");
+                    contact.state = newValue;
+                    break;
+                case "zip":
+                    if (!contact.validateZip(newValue)) throw new Error("Invalid Zip Code!");
+                    contact.zip = newValue;
+                    break;
+                case "phonenumber":
+                    if (!contact.validatePhone(newValue)) throw new Error("Invalid Phone Number!");
+                    contact.phoneNumber = newValue;
+                    break;
+                case "email":
+                    if (!contact.validateEmail(newValue)) throw new Error("Invalid Email!");
+                    contact.email = newValue;
+                    break;
+                default:
+                    console.log("Invalid field name.");
+                    return;
+            }
+                
+            console.log("Contact updated successfully.");
+        } catch (error) {
+            console.error(error.message);
+        }
+    }
 }
 
 let addressBook = new AddressBook();
-var contact1 = new  Contact("Sahil", "Khaimeriya", "Bhopal", "Ananad nagar", "Madhya Pradesh", 462022, 1234567899, "sahil@gmail.com");
+var contact1 = new  Contact("Shivam", "Kumar", "Bhopal", "Ananad nagar", "Madhya Pradesh", 462022, 1234567899, "sahil@gmail.com");
 addressBook.addContact(contact1);
 
+addressBook.displayContact();
+addressBook.findContact("Shivam");
+
+addressBook.editContact("Shivam", "state", "Bihar");
 addressBook.displayContact();
