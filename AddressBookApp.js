@@ -51,3 +51,38 @@ class Contact {
         return /^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}$/.test(email);
     }
 }
+
+// UC3 - Creating the address book class and adding the contact to it
+class AddressBook {
+    constructor() {
+        this.contacts = [];
+    }
+
+    addContact(contact) {
+        if(this.contacts.find(c => c.phoneNumber === contact.phoneNumber)) {
+            console.log("This contact already exists!")
+            return;
+        }
+
+        this.contacts.push(contact);
+        console.log("Contact added successfully...");
+    }
+
+    displayContact() {
+        if(this.contacts.length === 0) {
+            console.log("Contacts is empty...");
+            return;
+        }
+
+        console.log("\nAddress book contacts are: ");
+        this.contacts.forEach((contact, index) => {
+            console.log(`${index + 1} : ${contact.toString()}`);
+        });
+    }
+}
+
+let addressBook = new AddressBook();
+var contact1 = new  Contact("Sahil", "Khaimeriya", "Bhopal", "Ananad nagar", "Madhya Pradesh", 462022, 1234567899, "sahil@gmail.com");
+addressBook.addContact(contact1);
+
+addressBook.displayContact();
