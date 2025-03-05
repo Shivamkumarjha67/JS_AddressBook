@@ -160,6 +160,24 @@ class AddressBook {
     numberOfContacts() {
         console.log(`\nNumber of contacts in the address book are: ${this.contacts.length}`)
     }
+
+    // UC8 - Checking contact by address
+    findByAddress(field, name) {
+        this.contacts.forEach(c => {
+            switch(field) {
+                case "city" : if(c.city === name) {
+                                console.log(`Contact details are: ${c.toString()}`);
+                                break;
+                            }
+                case "state" : if(c.state === name) {
+                                console.log(`Contact details are: ${c.toString()}`);
+                                break;
+                            }
+                default : console.log('Not a valid address field for searching..');
+                            return;
+            }
+        })
+    }
 }
 
 let addressBook = new AddressBook();
@@ -173,3 +191,4 @@ addressBook.editContact("Shivam", "state", "Bihar");
 addressBook.displayContact();
 
 addressBook.numberOfContacts();
+addressBook.findByAddress("state", "Bihar");
