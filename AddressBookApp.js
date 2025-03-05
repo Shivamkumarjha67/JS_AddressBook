@@ -152,6 +152,11 @@ class AddressBook {
         this.contacts.splice(index, 1);
         console.log("Contact deleted successfully...");
     }
+
+    // UC6 - Getting the number of contacts present
+    numberOfContacts() {
+        console.log(`\nNumber of contacts in the address book are: ${this.contacts.length}`)
+    }
 }
 
 let addressBook = new AddressBook();
@@ -163,3 +168,5 @@ addressBook.findContact("Shivam");
 
 addressBook.editContact("Shivam", "state", "Bihar");
 addressBook.displayContact();
+
+addressBook.numberOfContacts();
