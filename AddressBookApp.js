@@ -178,6 +178,26 @@ class AddressBook {
             }
         })
     }
+
+    // UC10 - Getting the number of contacts by address (city or state)
+    countContactByAddress(field, name) {
+        var numberOfContact = 0;
+
+        this.contacts.forEach(c => {
+            switch(field) {
+                case "city" : if(c.city === name) 
+                                numberOfContact++;
+                                break;
+                case "state" : if(c.state === name) 
+                                numberOfContact++;
+                                break;
+                default : console.log('Not a valid address field for searching..');
+                            return;
+            }
+        })
+
+        console.log(`Number of contact present for given address is: ${numberOfContact}`);
+    }
 }
 
 let addressBook = new AddressBook();
@@ -192,3 +212,4 @@ addressBook.displayContact();
 
 addressBook.numberOfContacts();
 addressBook.findByAddress("state", "Bihar");
+addressBook.countContactByAddress("city", "Bhopal");
