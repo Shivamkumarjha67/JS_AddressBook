@@ -198,6 +198,18 @@ class AddressBook {
 
         console.log(`Number of contact present for given address is: ${numberOfContact}`);
     }
+
+    // UC11 - Sort the contact alphabetically by name
+    sortByName() {
+        this.contacts.sort((a, b) => {
+            let nameA = a.firstName.toLowerCase() + " " + a.lastName.toLowerCase();
+            let nameB = b.firstName.toLowerCase() + " " + b.lastName.toLowerCase();
+            return nameA.localeCompare(nameB); // Compare names alphabetically
+        });
+    
+        console.log("Sorted Address Book:");
+        console.log(this.contacts.map(contact => contact.toString()).join("\n"));    
+    } 
 }
 
 let addressBook = new AddressBook();
