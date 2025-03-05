@@ -161,7 +161,7 @@ class AddressBook {
         console.log(`\nNumber of contacts in the address book are: ${this.contacts.length}`)
     }
 
-    // UC8 - Checking contact by address
+    // UC8 - Checking contact by address & UC9 - view of the contact
     findByAddress(field, name) {
         this.contacts.forEach(c => {
             switch(field) {
